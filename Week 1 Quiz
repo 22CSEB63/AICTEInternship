@@ -1,1 +1,92 @@
+import random
 
+print("\t\tHELLO USER\t\t")
+print("Please Enter Your Name..")
+name = input()
+
+questions_and_answers = [
+    {"question": "What is the capital of France?", "answer": "Paris"},
+    {"question": "Which planet is known as the Red Planet?", "answer": "Mars"},
+    {"question": "What is the largest mammal?", "answer": "Blue whale"},
+    {"question": "In which year did World War II end?", "answer": "1945"},
+    {"question": "Who wrote 'Romeo and Juliet'?", "answer": "William Shakespeare"},
+    {"question": "What is the currency of Japan?", "answer": "Yen"},
+    {"question": "What is the chemical symbol for gold?", "answer": "Au"},
+    {"question": "Who painted the Mona Lisa?", "answer": "Leonardo da Vinci"},
+    {"question": "Which element has the chemical symbol 'O'?", "answer": "Oxygen"},
+    {"question": "What is the largest ocean on Earth?", "answer": "Pacific Ocean"},
+    {"question": "Who is the author of 'To Kill a Mockingbird'?", "answer": "Harper Lee"},
+    {"question": "What is the capital of Australia?", "answer": "Canberra"},
+    {"question": "What is the square root of 64?", "answer": "8"},
+    {"question": "Who discovered penicillin?", "answer": "Alexander Fleming"},
+    {"question": "Which country is known as the Land of the Rising Sun?", "answer": "Japan"},
+    {"question": "What is the capital of Brazil?", "answer": "Brasília"},
+    {"question": "How many continents are there?", "answer": "7"},
+    {"question": "Who wrote '1984'?", "answer": "George Orwell"},
+    {"question": "What is the capital of South Korea?", "answer": "Seoul"},
+    {"question": "What is the speed of light?", "answer": "299,792 kilometers per second"},
+    {"question": "Who is known as the 'Father of Computer Science'?", "answer": "Alan Turing"},
+    {"question": "What is the largest desert in the world?", "answer": "Antarctica"},
+    {"question": "What is the main ingredient in guacamole?", "answer": "Avocado"},
+    {"question": "Who was the first woman to win a Nobel Prize?", "answer": "Marie Curie"},
+    {"question": "What is the capital of China?", "answer": "Beijing"},
+    {"question": "What is the square of 9?", "answer": "81"},
+    {"question": "Which gas makes up the majority of Earth's atmosphere?", "answer": "Nitrogen"},
+    {"question": "Who played James Bond in 'GoldenEye'?", "answer": "Pierce Brosnan"},
+    {"question": "What is the smallest prime number?", "answer": "2"},
+    {"question": "Who painted 'Starry Night'?", "answer": "Vincent van Gogh"},
+    {"question": "What is the capital of Canada?", "answer": "Ottawa"},
+    {"question": "What is the largest bird in the world?", "answer": "Ostrich"},
+    {"question": "In which year did the Titanic sink?", "answer": "1912"},
+    {"question": "What is the square root of 100?", "answer": "10"},
+    {"question": "Who wrote 'The Great Gatsby'?", "answer": "F. Scott Fitzgerald"},
+    {"question": "What is the currency of the United Kingdom?", "answer": "Pound sterling"},
+    {"question": "Which planet is known as the 'Morning Star'?", "answer": "Venus"},
+    {"question": "What is the capital of Russia?", "answer": "Moscow"},
+    {"question": "Who developed the theory of relativity?", "answer": "Albert Einstein"},
+]
+
+def ask_question(question_data):
+    print(question_data["question"])
+    user_answer = input("Your answer: ").strip().lower()
+    return user_answer == question_data["answer"].lower()
+
+def run_quiz(questions_and_answers):
+    random.shuffle(questions_and_answers)
+    score = 0
+    asked_indices = set()
+
+    for _ in range(10):
+        while True:
+            index = random.randint(0, len(questions_and_answers) - 1)
+            if index not in asked_indices:
+                asked_indices.add(index)
+                question_data = questions_and_answers[index]
+                break
+
+        if ask_question(question_data):
+            print("Correct!\n")
+            score += 1
+        else:
+            print(f"Wrong! The correct answer is {question_data['answer']}\n")
+
+    print(f"Quiz complete. Your score is {score}/10")
+
+if __name__ == "__main__":
+    run_quiz(questions_and_answers)
+
+    while True:
+        print("Now Press 1 to Continue or 0 to Quit")
+        try:
+            ch = int(input())
+
+            if ch == 1:
+                run_quiz(questions_and_answers)
+            elif ch == 0:
+                print("Goodbye!")
+                break
+            else:
+                print("Invalid choice. Please enter 1 to continue or 0 to quit.")
+
+        except ValueError:
+            print("Error: Please enter a valid number.")
