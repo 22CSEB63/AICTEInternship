@@ -1,1 +1,12 @@
+def word_count(text):
+    count = 0
+    for char in text:
+        if char.isspace():
+            count += 1
+    count += 1
 
+    return count
+
+input_text = input("Enter the Sentence to Count:")
+result = word_count(input_text)
+print(f"Word count: {result}")
